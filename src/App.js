@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 
-const Card     = props => {
+const toText   = (content, limit=0, except=' ...') => {
+    content = content.replace(/<[^>]+>/g, '');
+    return content.substring(0,limit) + except;
+}
+
+const Card     = (props) => {
     return (
-        <div className="card" alt={props.title}>
+        <div className="card"  alt={props.title} onClick={props.onClick}>
             <div className="card-body">
-                { props.content.substring(0,200) }
+                <h1 className="card-title text-black"> { props.title } </h1>
+                <div className="card-caption">
+                { toText( props.content, 200 ) }
+                </div>
             </div> 
         </div>        
     );
@@ -14,8 +21,8 @@ const Card     = props => {
 
 const CardList = props => {
     return (
-        <div>
-            {props.items.map( item => <Card {...item} /> )}
+        <div className="cards">
+            {props.items.map( (item,index) => <Card {...item} key={index}  /> )}
         </div> 
     );
 }

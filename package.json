@@ -3,12 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autoprefixer": "^8.0.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^3.1.0",
+    "npm": "^5.6.0",
+    "postcss-import": "^11.1.0",
+    "precss": "^3.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "tailwindcss": "^0.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "deploy": "react-scripts build && firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
