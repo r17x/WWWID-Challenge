@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 
 const toText   = (content, limit=0, except=' ...') => {
     content = content.replace(/<[^>]+>/g, '');
@@ -35,21 +34,36 @@ class App extends Component {
         isLoaded: false,
     };
   }  
-  componentDidMount(){
-      let url = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
 
-      fetch(url).
-          then((res) => {
-            console.log(res); 
-            if (res.status === 200) 
-                return res.json();
+  fetchCache(){
+      let url     = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
+      let cacheKey = url;
+      let cached   = sessionStorage.getItem(cacheKey);
+
+      if (cached !== null){
+          this.setState({
+            feed: JSON.parse(cached),
+            isLoaded: true,
+            isCached: true
+          }); 
+          return; 
+      }
+      return fetch(url).then((res) => {
+            if (res.status === 200) {
+                res.clone().text().then(content => {
+                    sessionStorage.setItem(cacheKey, content); 
+                }) 
+            }
+            return res.json();
             
-          }).
-          then((json) => {
+          }).then((json) => {
             this.setState({feed: json, isLoaded: true}); 
             console.log(this.state.feed); 
           });
-  
+  }
+
+  componentDidMount(){
+    this.fetchCache(); 
   }
   render() {
     if(! this.state.isLoaded){
