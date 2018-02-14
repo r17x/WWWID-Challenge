@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@researchgate/react-intersection-observer": "^0.6.0",
     "autoprefixer": "^8.0.0",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^3.1.0",
+    "intersection-observer": "^0.5.0",
     "npm": "^5.6.0",
     "postcss-import": "^11.1.0",
     "precss": "^3.1.0",

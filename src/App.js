@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 
 const toText   = (content, limit=0, except=' ...') => {
-    content = content.replace(/<[^>]+>/g, '');
+    //content   = content.split("<p>");
+    content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
+    content     = content.filter((v) => {
+        return v.length > 100; 
+    });
+    content   = content[0].replace(/<[^>]+>/g, '');
     return content.substring(0,limit) + except;
 }
 
 const Card     = (props) => {
     return (
         <div className="card"  alt={props.title} onClick={props.onClick}>
+            <div className="card-img" 
+                 style={{backgroundImage: "url('" + props.thumbnail + "')" }}
+            >
+            </div>
             <div className="card-body">
                 <h1 className="card-title text-black"> { props.title } </h1>
                 <div className="card-caption">
