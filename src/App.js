@@ -12,90 +12,102 @@ const toText   = (content, limit=0, except=' ...') => {
 
 const Card     = (props) => {
     return (
-        <div className="card"  alt={props.title} onClick={props.onClick}>
+            <div className="card"  alt={props.title} onClick={props.onClick}>
             <div className="card-img" 
-                 style={{backgroundImage: "url('" + props.thumbnail + "')" }}
+            style={{backgroundImage: '' }}
+            data-src={props.thumbnail }
             >
             </div>
             <div className="card-body">
-                <h1 className="card-title text-black"> { props.title } </h1>
-                <div className="card-caption">
-                { toText( props.content, 200 ) }
-                </div>
+            <h1 className="card-title text-black"> { props.title } </h1>
+            <div className="card-caption">
+            { toText( props.content, 200 ) }
+            </div>
             </div> 
-        </div>        
-    );
+            </div>        
+           );
 }
 
 const CardList = props => {
     return (
-        <div className="cards">
+            <div className="cards">
             {props.items.map( (item,index) => <Card {...item} key={index}  /> )}
-        </div> 
-    );
+            </div> 
+           );
 }
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        feed    : [],
-        isLoaded: false,
-    };
-  }  
+    constructor(props){
+        super(props);
+        this.state = {
+            feed    : [],
+            isLoaded: false,
+        };
+    }  
 
-  fetchCache(){
-      let url     = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
-      let cacheKey = url;
-      let cached   = sessionStorage.getItem(cacheKey);
+    fetchCache(){
+        let url     = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
+        let cacheKey = url;
+        let cached   = sessionStorage.getItem(cacheKey);
 
-      if (cached !== null){
-          this.setState({
-            feed: JSON.parse(cached),
-            isLoaded: true,
-            isCached: true
-          }); 
-          return; 
-      }
-      return fetch(url).then((res) => {
+        if (cached !== null){
+            this.setState({
+                feed: JSON.parse(cached),
+                isLoaded: true,
+                isCached: true,
+                isFetched: false,
+            }); 
+            return; 
+        }
+        return fetch(url).then((res) => {
             if (res.status === 200) {
                 res.clone().text().then(content => {
                     sessionStorage.setItem(cacheKey, content); 
                 }) 
             }
             return res.json();
-            
-          }).then((json) => {
+
+        }).then((json) => {
             this.setState({feed: json, isLoaded: true}); 
             console.log(this.state.feed); 
-          });
-  }
-
-  componentDidMount(){
-    this.fetchCache(); 
-  }
-  render() {
-    if(! this.state.isLoaded ){
-        return (
-        <div className="card"  alt="Loading content ...">
-            <div className="card-img" >
-            </div>
-            <div className="card-body">
-                <h1 className="card-title bg-blue-dark text-blue-dark">wkwkwkwkwkwkwkkw</h1>
-                <div className="text-blue-dark bg-blue-dark card-caption">
-                {'wk'.repeat(170)}
-                </div>
-            </div> 
-        </div>        
-               );
+        });
     }
 
-    return (
-        <div className="article">
-            <CardList items={this.state.feed.items} />
-        </div>
-    );
-  }
+    componentDidMount(){
+        this.fetchCache(); 
+    }
+    Lazy(){
+        [].forEach.call(
+                document.querySelectorAll('.card-img[data-src]'), function(img){
+                    img.style.backgroundImage = `url("${img.getAttribute('data-src')}")`;
+                });
+    }
+
+    componentDidUpdate(){
+        this.Lazy(); 
+    }
+
+    render() {
+        if(! this.state.isLoaded ){
+            return (
+                    <div className="card"  alt="Loading content ...">
+                    <div className="card-img" >
+                    </div>
+                    <div className="card-body">
+                    <h1 className="card-title bg-blue-dark text-blue-dark">wkwkwkwkwkwkwkkw</h1>
+                    <div className="text-blue-dark bg-blue-dark card-caption">
+                    {'wk'.repeat(170)}
+                    </div>
+                    </div> 
+                    </div>        
+                   );
+        }
+        return (
+                <div className="article">
+                <CardList items={this.state.feed.items} />
+                </div>
+               );
+    }
 }
 
 export default App;

@@ -1,9 +1,9 @@
 @tailwind preflight;
 /*****************************
-*    Here Your write a code  *
-*    Here Your Import Like   *
-*    @import 'component.css' *
-*****************************/
+ *    Here Your write a code  *
+ *    Here Your Import Like   *
+ *    @import 'component.css' *
+ *****************************/
 $blue-gradient: linear-gradient(#4568dc, #b06ab3);
 $blue-skies:    linear-gradient(to right,#56ccf2, #2f80ed);
 
@@ -45,7 +45,7 @@ body {
         @apply font-light text-3xl text-center text-grey-lightest;
 
     }
-    
+
     a {
         @apply font-light text-white cursor-pointer; 
         &:hover, &:focus {
@@ -69,20 +69,21 @@ body {
 .card {
 
     @apply w-auto m-2 mb-4  max-h-screen rounded overflow-hidden shadow flex flex-col; 
-    
+
     &:hover, &:focus{
         @apply bg-white cursor-pointer shadow-lg;  
     }
 
     .card-img { 
         @apply w-full 
-               bg-cover
-               bg-no-repeat
-               bg-center
-               bg-blue-lighter;
+        bg-cover
+        bg-no-repeat
+        bg-center
+        bg-blue-lightest;
         min-height: 32rem; 
+        opacity: 0;
+        transition: opacity .3s;
     }
-
     .card-body {
 
         @apply px-6 py-4 w-full;
@@ -90,6 +91,7 @@ body {
         .card-title { @apply font-bold text-xl mb-2; }
 
         .card-caption { @apply text-grey-darker text-base; }
+
     }
 
     .card-footer{

@@ -4,7 +4,6 @@ import App from './App';
 import './style.css';
 import registerServiceWorker from './registerServiceWorker';
 
-
 const Header = props => {
     return (
             <div className="page-title flex-col">
