@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 const toText   = (content, limit=0, except=' ...') => {
-    //content   = content.split("<p>");
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
     content     = content.filter((v) => {
         return v.length > 100; 
     });
+
     content   = content[0].replace(/<[^>]+>/g, '');
     return content.substring(0,limit) + except;
 }
@@ -75,8 +75,19 @@ class App extends Component {
     this.fetchCache(); 
   }
   render() {
-    if(! this.state.isLoaded){
-        return "<h1>Loading...</h1>"; 
+    if(! this.state.isLoaded ){
+        return (
+        <div className="card"  alt="Loading content ...">
+            <div className="card-img" >
+            </div>
+            <div className="card-body">
+                <h1 className="card-title bg-blue-dark text-blue-dark">wkwkwkwkwkwkwkkw</h1>
+                <div className="text-blue-dark bg-blue-dark card-caption">
+                {'wk'.repeat(170)}
+                </div>
+            </div> 
+        </div>        
+               );
     }
 
     return (

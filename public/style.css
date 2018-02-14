@@ -525,7 +525,7 @@ body {
 a {
   text-decoration: none; }
 
-.observer {
+body {
   overflow: scroll;
   height: 100vh; }
 

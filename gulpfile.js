@@ -15,6 +15,10 @@ var path        = require('path');
 
 var tailwindcss = require('tailwindcss');
 
+var purifycss   = require('gulp-purifycss');
+
+var purgecss    = require('gulp-purgecss');
+
 ///var browserSync = require('browser-sync').create();
 
 
@@ -53,6 +57,22 @@ var source      = 'src',
 /****************************************************************
  *     $ gulp style # untuk menjalankan fungsi dibawah ini      *
  ***************************************************************/
+gulp.task('purgecss', () => {
+    return gulp.src('./build/**/*.css')
+        .pipe(purgecss({
+            content: ['./build/**/*.js','./build/**/*.html' ] 
+        }))
+        .pipe(gulp.dest('./build/'));
+
+});
+
+gulp.task('purifycss', () => {
+    return gulp.src('./build/**/*.css')
+        .pipe(purifycss(
+           ['./build/**/*.js','./build/**/*.html' ] 
+        ))
+        .pipe(gulp.dest('./build/'));
+});
 gulp.task( 'style', () => {
 
     /**

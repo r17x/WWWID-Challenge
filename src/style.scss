@@ -18,10 +18,11 @@ a {
     @apply no-underline; 
 }
 
-.observer {
+body {
     overflow: scroll;
     @apply h-screen; 
 }
+
 .page-title { 
 
     @apply w-full bg-blue-dark h-64 flex justify-center items-center shadow-md shadow-inner leading-tight p-6 pb-6;

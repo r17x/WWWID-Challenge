@@ -7,6 +7,8 @@
     "autoprefixer": "^8.0.0",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
+    "gulp-purgecss": "^0.20.0",
+    "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^3.1.0",
     "intersection-observer": "^0.5.0",
     "npm": "^5.6.0",
@@ -19,9 +21,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "deploy": "react-scripts build && firebase deploy",
+    "production": "react-scripts build && gulp purifycss && gulp purgecss && firebase deploy",
+    "deploy": "firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^0.20.0"
   }
 }
