@@ -76,10 +76,10 @@ body {
 
     .card-img { 
         @apply w-full 
-        bg-cover
+        bg-contain
         bg-no-repeat
         bg-center
-        bg-blue-lightest;
+        bg-transparent;
         min-height: 32rem; 
         opacity: 0;
         transition: opacity .3s;

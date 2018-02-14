@@ -515,10 +515,10 @@ button,
   cursor: pointer; }
 
 /*****************************
-*    Here Your write a code  *
-*    Here Your Import Like   *
-*    @import 'component.css' *
-*****************************/
+ *    Here Your write a code  *
+ *    Here Your Import Like   *
+ *    @import 'component.css' *
+ *****************************/
 body {
   background-color: #f1f5f8; }
 
@@ -604,11 +604,13 @@ body {
 
 .card .card-img {
   width: 100%;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #bcdefa;
-  min-height: 32rem; }
+  background-color: transparent;
+  min-height: 32rem;
+  opacity: 0;
+  transition: opacity .3s; }
 
 .card .card-body {
   padding-left: 1.5rem;

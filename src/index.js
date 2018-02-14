@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Routers from './App';
 import './style.css';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -15,7 +15,7 @@ const Header = props => {
 ReactDOM.render(
         <div>
             <Header />
-            <App />
+            <Routers />
         </div>
 , document.getElementById('r00t'));
 registerServiceWorker();
