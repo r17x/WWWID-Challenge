@@ -1,4 +1,4 @@
-[WWWID Challenge](https://medium.com/wwwid/tantangan-web-developer-untuk-membuat-aplikasi-web-bisa-digunakan-kurang-dari-5-detik-70bb7431741d)
+[WWWID Challenge](https://medium.com/wwwid/tantangan-web-developer-untuk-membuat-aplikasi-web-bisa-digunakan-kurang-dari-5-detik-70bb7431741d) | [#WWWID](https://github.com/topics/wwwid) | [#WWWIDchallenge](https://github.com/topics/wwwidchallenge)
 
 ### Web Performance Challenge
 Repository Dependency:
