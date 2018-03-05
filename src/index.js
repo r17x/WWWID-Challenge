@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
 import Routers from './App';
 import './style.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -13,9 +16,11 @@ const Header = props => {
     );
 }
 ReactDOM.render(
-        <div>
-            <Header />
-            <Routers />
-        </div>
+        <Provider store={createStore(reducers)}> 
+            <div>
+                <Header />
+                <Routers />
+            </div>
+        </Provider>
 , document.getElementById('r00t'));
 registerServiceWorker();

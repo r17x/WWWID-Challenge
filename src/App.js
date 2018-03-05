@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 
 const toText   = (content, limit=0, except=' ...') => {
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
@@ -49,14 +51,21 @@ class App extends Component {
         let url     = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
         let cacheKey = url;
         let cached   = sessionStorage.getItem(cacheKey);
-
+        const { setHasilFetch } = this.props;
         if (cached !== null){
             this.setState({
                 feed: JSON.parse(cached),
                 isLoaded: true,
                 isCached: true,
                 isFetched: false,
-            }); 
+            });
+            this.setHasilFetch({
+                feed: JSON.parse(cached),
+                isLoaded: true,
+                isCached: true,
+                isFetched: false,
+            });
+            console.log(this.props.hasilFetch); 
             return; 
         }
         return fetch(url).then((res) => {
@@ -111,4 +120,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        hasilFetch: state.hasilFetch
+    }
+}
+
+export default connect(mapStateToProps, actions)(App);
