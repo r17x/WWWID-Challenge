@@ -519,6 +519,9 @@ button,
  *    Here Your Import Like   *
  *    @import 'component.css' *
  *****************************/
+* {
+  font-family: Roboto, sans-serif; }
+
 body {
   background-color: #f1f5f8; }
 
@@ -532,7 +535,6 @@ body {
 .page-title {
   width: 100%;
   background-color: #2779bd;
-  height: 16rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -541,20 +543,21 @@ body {
   line-height: 1.25;
   padding: 1.5rem;
   padding-bottom: 1.5rem;
-  background-image: linear-gradient(to right, #56ccf2, #2f80ed); }
+  min-height: 8rem;
+  background-color: #f2f2f2; }
 
 .page-title h1,
 .page-title h2,
 .page-title h3,
-.page-title h4 {
-  color: #f1f5f8; }
+.page-title h4,
+.page-title p {
+  color: #3d4852; }
 
 .page-title h1 {
   text-align: center;
   font-weight: 600;
   font-size: 1.875rem;
-  letter-spacing: -0.05em;
-  margin-bottom: .25rem; }
+  letter-spacing: -0.05em; }
 
 .page-title h2 {
   font-weight: 300;
@@ -564,26 +567,45 @@ body {
 
 .page-title a {
   font-weight: 300;
-  color: #fff;
+  color: #606f7b;
   cursor: pointer; }
 
 .page-title a:hover,
 .page-title a:focus {
-  color: #f1f5f8; }
+  font-weight: 600; }
+
+.page-title .nav ul {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem; }
+
+.page-title .nav ul li {
+  margin-right: 1rem;
+  font-size: 1.25rem; }
+
+.page-title .nav ul li:last-child {
+  margin-right: 0; }
 
 .article {
   display: flex;
   justify-content: center;
-  width: 100%; }
+  width: 100%;
+  background-color: #fff; }
 
 .cards {
-  width: 100%; }
-  @media (min-width: 992px) {
-    .cards {
-      width: 66.66667%; } }
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5rem;
+  justify-content: center; }
   @media (min-width: 768px) {
     .cards {
-      width: 66.66667%; } }
+      justify-content: flex-start; } }
+  @media (min-width: 992px) {
+    .cards {
+      justify-content: flex-start; } }
 
 .card {
   width: auto;
@@ -594,13 +616,15 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; }
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 25rem;
+  width: 20rem; }
 
 .card:hover,
 .card:focus {
-  background-color: #fff;
   cursor: pointer;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08); }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08); }
 
 .card .card-img {
   width: 100%;
@@ -608,7 +632,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  min-height: 32rem;
+  min-height: 8rem;
   opacity: 0;
   transition: opacity .3s; }
 
@@ -620,13 +644,14 @@ body {
   width: 100%; }
 
 .card .card-body .card-title {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.25rem;
   margin-bottom: .5rem; }
 
 .card .card-body .card-caption {
   color: #606f7b;
-  font-size: 1rem; }
+  font-size: 1rem;
+  font-weight: 300; }
 
 .card .card-footer {
   padding-left: 1.5rem;

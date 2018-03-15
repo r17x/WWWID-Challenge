@@ -9,9 +9,11 @@ $blue-skies:    linear-gradient(to right,#56ccf2, #2f80ed);
 
 
 $primary-color: $blue-skies;
+* {
+    font-family: Roboto, sans-serif; 
+}
 
 body { 
-
     @apply bg-grey-lighter;
 }
 a {
@@ -25,19 +27,20 @@ body {
 
 .page-title { 
 
-    @apply w-full bg-blue-dark h-64 flex justify-center items-center shadow-md shadow-inner leading-tight p-6 pb-6;
+    @apply w-full bg-blue-dark flex justify-center items-center shadow-md shadow-inner leading-tight p-6 pb-6;
+    min-height: 8rem;  
+    //background-image: $blue-skies;
+    background-color: #F2F2F2; 
 
-    background-image: $blue-skies;
+    h1,h2,h3,h4,p {
 
-    h1,h2,h3,h4 {
-
-        @apply text-grey-lighter;
+        @apply text-grey-darkest; 
 
     }
 
     h1 { 
 
-        @apply text-center font-semibold text-3xl tracking-tight mb-1;
+        @apply text-center font-semibold text-3xl tracking-tight; 
 
     }
 
@@ -47,31 +50,48 @@ body {
     }
 
     a {
-        @apply font-light text-white cursor-pointer; 
+        @apply font-light text-grey-darker  cursor-pointer; 
         &:hover, &:focus {
-            @apply text-grey-lighter;  
+            @apply font-semibold;  
         }
+    }
+
+    .nav {
+        ul {
+            @apply inline-flex list-reset my-4;
+           li {
+            @apply mr-4 text-xl;  
+           }
+           li:last-child{
+            margin-right: 0; 
+           } 
+        } 
     }
 
 }
 .article {
     @apply flex justify-center  w-full; 
+    background-color: #FFF; 
 }
 .cards {
-    @apply w-full;
-    @screen lg {
-        @apply w-2/3; 
+    @apply w-full flex flex-wrap p-2 justify-center; 
+
+    @screen md{
+        @apply justify-start; 
     }
-    @screen md {
-        @apply w-2/3; 
+
+    @screen lg{
+        @apply justify-start; 
     }
 }
 .card {
 
-    @apply w-auto m-2 mb-4  max-h-screen rounded overflow-hidden shadow flex flex-col; 
+    @apply w-auto m-2 mb-4  max-h-screen rounded overflow-hidden shadow flex flex-wrap justify-center; 
+    height: 25rem;
+    width: 20rem; 
 
     &:hover, &:focus{
-        @apply bg-white cursor-pointer shadow-lg;  
+        @apply cursor-pointer shadow-md;  
     }
 
     .card-img { 
@@ -80,7 +100,7 @@ body {
         bg-no-repeat
         bg-center
         bg-transparent;
-        min-height: 32rem; 
+        min-height: 8rem;
         opacity: 0;
         transition: opacity .3s;
     }
@@ -88,9 +108,9 @@ body {
 
         @apply px-6 py-4 w-full;
 
-        .card-title { @apply font-bold text-xl mb-2; }
+        .card-title { @apply font-semibold text-xl mb-2; }
 
-        .card-caption { @apply text-grey-darker text-base; }
+        .card-caption { @apply text-grey-darker text-base font-light; }
 
     }
 
