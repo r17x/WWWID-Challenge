@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, 
+       { Component } from 'react';
+import Lazy          from '../Component/Lazy';
+import Loading  from 'nprogress'; 
 
 const toText   = (content, limit=0, except=' ...') => {
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
@@ -12,16 +15,14 @@ const toText   = (content, limit=0, except=' ...') => {
 
 const Card     = (props) => {
     return (
-            <div className="card"  alt={props.title} onClick={props.onClick}>
+            <div className="border-grey-lighter border-solid"  alt={props.caption} onClick={props.onClick}>
             <div className="card-img" 
             style={{backgroundImage: '' }}
-            data-src={props.thumbnail }
+            data-src={props.thumbnail_src }
             >
             </div>
             <div className="card-body">
-            <h1 className="card-title text-black"> { props.title } </h1>
             <div className="card-caption">
-            { toText( props.content, 200 ) }
             </div>
             </div> 
             </div>        
@@ -35,7 +36,6 @@ const CardList = props => {
             </div> 
            );
 }
-
 class App extends Component {
     constructor(props){
         super(props);
@@ -59,24 +59,22 @@ class App extends Component {
             return res.json();
 
         }).then((json) => {
-            this.setState({feed: json, isLoaded: true}); 
+            this.setState({
+                feed: json.user.media.nodes, 
+                isLoaded: true
+            }); 
             console.log(this.state.feed); 
         });
     }
-
+    componentWillMount(){
+        Loading.start(); 
+    }
     componentDidMount(){
         this.fetchCache(); 
     }
-    Lazy(){
-        [].forEach.call(
-                document.querySelectorAll('.card-img[data-src]'), function(img){
-                    img.style.backgroundImage = `url("${img.getAttribute('data-src')}")`;
-                    img.style.opacity = 100; 
-                });
-    }
 
     componentDidUpdate(){
-        this.Lazy(); 
+        Lazy(); 
     }
 
     render() {
@@ -94,9 +92,11 @@ class App extends Component {
                     </div>        
                    );
         }
+        Loading.done(); 
         return (
-                <div className="article">
-                <CardList items={this.state.feed.items} />
+                <div className="flex flex-wrap justify-center ">
+                <h3> Follow Me On Instagram <a href="//instagram.com/ri7nz/">@ri7nz</a></h3>
+                <CardList items={this.state.feed} />
                 </div>
                );
     }

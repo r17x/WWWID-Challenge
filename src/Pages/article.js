@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Loading  from 'nprogress'; 
+import Lazy from '../Component/Lazy'; 
 
 const toText   = (content, limit=0, except=' ...') => {
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
@@ -72,20 +74,15 @@ class App extends Component {
             console.log(this.state.feed); 
         });
     }
-
+    componentWillMount(){
+        Loading.start(); 
+    }
     componentDidMount(){
         this.fetchCache(); 
     }
-    Lazy(){
-        [].forEach.call(
-                document.querySelectorAll('.card-img[data-src]'), function(img){
-                    img.style.backgroundImage = `url("${img.getAttribute('data-src')}")`;
-                    img.style.opacity = 100; 
-                });
-    }
 
     componentDidUpdate(){
-        this.Lazy(); 
+        Lazy();
     }
 
     render() {
@@ -103,6 +100,7 @@ class App extends Component {
                     </div>        
                    );
         }
+        Loading.done(); 
         return (
                 <div className="article">
                 <CardList items={this.state.feed.items} />

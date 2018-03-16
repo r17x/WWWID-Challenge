@@ -1,0 +1,162 @@
+$baseline: 16px;
+$fontSize: $baseline;
+$lineHeight: $baseline * 1.4;
+
+$color: #222;
+$primaryColor: #DE3047;
+$lineColor: #eee;
+$emptyColor: #eee;
+
+$feedHeight: 200px;
+$feedThumbnailSize: 80px;
+$appWidth: 560px;
+
+@mixin empty {
+  animation: glowing 1.5s ease-in infinite;
+    background: linear-gradient(to right, $emptyColor, #ccc, $emptyColor); 
+    background-size: 200%;
+    background-position: 200% 0%;
+}
+
+.feed {
+    box-sizing: border-box;
+    color: $color;
+    cursor: pointer;
+    display: block;
+    height: $feedHeight;
+    margin-bottom: $baseline * 0.5;
+    padding: $baseline;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+
+    &__thumbnail {
+        background: $emptyColor;
+        box-sizing: border-box;
+        float: left;
+        height: $feedThumbnailSize;
+        margin-right: $baseline;
+        overflow: hidden;
+        position: relative;
+        width: $feedThumbnailSize;
+    
+    &--empty {
+      @include empty;
+    }
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__info {
+        box-sizing: border-box;
+        display: block;
+        height: 100%;
+        opacity: 0.8;
+        overflow: hidden;
+    }
+
+    &:hover &__info {
+        opacity: 1;
+    }
+}
+
+.title {
+    font-weight: bold;
+    color: darken($color, 10%);
+  
+  &--empty {
+    @include empty;
+    height: $baseline;
+    margin-bottom: $baseline * 0.5;
+    width: 80%;
+  }
+  
+    a {
+        color: inherit;
+    }
+}
+
+
+.meta {
+    color: lighten($color, 10%);
+    font-size: $fontSize * 0.8;
+    margin-bottom: $baseline * 0.5;
+  
+  &--empty {
+    @include empty;
+    height: $baseline * 0.5;
+    width: 40%;
+  }
+    
+    &__author {
+        margin-right: $baseline * 0.2;
+    }
+
+    &__date {
+        color: lighten($color, 20%);
+    }
+}
+
+.content {
+    padding-top: $baseline * 0.5;
+    word-wrap: break-word;
+
+  &--empty {
+    .paragraph-line {
+      @include empty;
+      height: $baseline * 0.7;
+      margin-bottom: $baseline * 0.3;
+      width: 100%;
+      
+      &--half {
+        width: 50%;
+      }
+    }
+  }
+  
+    img {
+        width: 100%;
+    }
+}
+
+.feeds {
+    margin: $baseline 0;
+
+    @media (min-width: 768px) {
+        margin: $baseline * 2 0;
+    }
+}
+
+.page {
+    box-sizing: border-box;
+    margin: auto;
+    position: relative;
+
+    @media (min-width: 768px) {
+        width: $appWidth;
+    }
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 200% 0%;
+  }
+  
+  25% {
+    background-position: 150% 0%;
+  }
+  
+  50% {
+    background-position: 100% 0%;
+  }
+  
+  75% {
+    background-position: 50% 0%;
+  }
+  
+  100% {
+    background-position: 0% 0%;
+  }
+}

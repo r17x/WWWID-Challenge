@@ -54,6 +54,16 @@ var source      = 'src',
         });
 };
 
+
+gulp.task('copy', () => {
+    var nodeModules  = 'node_modules',
+        listCopy     = ['svg', 'fonts'];
+    listCopy.map( l => {
+        gulp.src([
+            `${nodeModules}/ionicons/dist/${l}/**/*`
+        ]).pipe(gulp.dest(`build/${l}`));
+    });
+});
 /****************************************************************
  *     $ gulp style # untuk menjalankan fungsi dibawah ini      *
  ***************************************************************/
@@ -73,8 +83,8 @@ gulp.task('purifycss', () => {
         ))
         .pipe(gulp.dest('./build/'));
 });
-gulp.task( 'style', () => {
 
+gulp.task( 'style', () => {
     /**
      * require precss & postcss-import untuk menyelesaikan
      * masalah @import pada scss sass
@@ -91,23 +101,6 @@ gulp.task( 'style', () => {
             .pipe( sass().on('error', sass.logError) )
             .pipe( gulp.dest( `${build}/` ) );
 });
-
-/****************************************************************
- *     $ gulp  # untuk menjalankan fungsi dibawah ini           *
- ***************************************************************/
-//gulp.task( 'live', ['style'], function()  {
-//
-//    browserSync.init({
-//        server: {
-//            baseDir: './'
-//        } 
-//    });
-//
-//    watchList('style'); 
-//    gulp.watch( './**/*.html' ).on("change", browserSync.reload);
-//    gulp.watch( "./**/*.js" ).on("change", browserSync.reload);
-//
-//});
 
 /****************************************************************
  *     $ gulp  # untuk menjalankan fungsi dibawah ini           *
