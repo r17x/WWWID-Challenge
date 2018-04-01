@@ -1,4 +1,5 @@
 import React, { createElement } from 'react'
+import { Link } from 'react-router-dom'
 
 const toText   = (content, limit=0, except=' ...') => {
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
@@ -17,14 +18,16 @@ const TagList = (props) => {
 }
 const Card     = (props) => {
     return (
-            <div className="card" role="Listitem"  alt={props.title} onClick={props.onClick}>
+            <div className="card" role="Listitem"  alt={props.title} >
             <div className="card-img" role="img" 
             style={{backgroundImage: '' }}
             data-src={props.thumbnail }
             >
             </div>
             <div className="card-body">
+            <Link to={'article'} param={props.slug} alt={props.title}>
             <h1 className="card-title text-black"> { props.title } </h1>
+            </Link>
             <div className="card-caption">
             { toText( props.content, 200 ) }
             </div>

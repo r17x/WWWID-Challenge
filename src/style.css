@@ -825,7 +825,8 @@ header .nav ul li,
 .card .card-footer .author {
   display: flex;
   display: inline-flex;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  padding: 0; }
 
 .card .card-footer .card-tags {
   display: inline-block;
