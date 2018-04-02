@@ -1,114 +1,93 @@
-import React, { Component } from 'react';
-
-const toText   = (content, limit=0, except=' ...') => {
-    content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/);
-    content     = content.filter((v) => {
-        return v.length > 100; 
-    });
-
-    content   = content[0].replace(/<[^>]+>/g, '');
-    return content.substring(0,limit) + except;
-}
-
-const Card     = (props) => {
-    return (
-            <div className="card"  alt={props.title} onClick={props.onClick}>
-            <div className="card-img" 
-            style={{backgroundImage: '' }}
-            data-src={props.thumbnail }
-            >
-            </div>
-            <div className="card-body">
-            <h1 className="card-title text-black"> { props.title } </h1>
-            <div className="card-caption">
-            { toText( props.content, 200 ) }
-            </div>
-            </div> 
-            </div>        
-           );
-}
-
-const CardList = props => {
-    return (
-            <div className="cards">
-            {props.items.map( (item,index) => <Card {...item} key={index}  /> )}
-            </div> 
-           );
-}
+/* ReactJS */
+import React, { Component } from 'react'
+/* React Router */
+import { BrowserRouter as Router }  from 'react-router-dom' 
+import { Switch, Route } from 'react-router' 
+/* My Component */
+import Header   from './Component/header' 
+import Footer   from './Component/footer' 
+/* Pages */
+import Articles from './Pages/article' 
+/* Other */
+import toSlug  from './Component/Slugify'
+import Lazy from './Component/Lazy' 
+import { Provider } from './Component/AppContext'
 
 class App extends Component {
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
-            feed    : [],
-            isLoaded: false,
-        };
-    }  
+            uri: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid",
+            feed: [],
+            isLoad: false,
+            query: this.filters
+        }
+    }
+
+    filters(param){
+        //console.log(this.state.feed)  
+    }
+    componentDidMount(){
+        this.fetchCache()
+    }
+    
+    componentDidUpdate(){
+        Lazy() 
+    }
 
     fetchCache(){
-        let url     = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid';
-        let cacheKey = url;
-        let cached   = sessionStorage.getItem(cacheKey);
+        let url      = this.state.uri
+        let cacheKey = url
+        let cached   = sessionStorage.getItem(cacheKey)
 
-        if (cached !== null){
-            this.setState({
-                feed: JSON.parse(cached),
-                isLoaded: true,
-                isCached: true,
-                isFetched: false,
-            }); 
-            return; 
+        if ( cached === null ){
+            fetch(url).then((res) => {
+                if (res.status === 200) {
+                    return res.json()
+                }
+            }).then( json => {
+                json.items.map( item => {
+                    let parseDate = new Date(item.pubDate)
+                    item.slug = toSlug(item.title) 
+                    item.UTCpubDate = parseDate.toUTCString()
+                    item.humandate = parseDate.toDateString()
+                    return item
+                })
+                sessionStorage.setItem(cacheKey, JSON.stringify(json))
+                this.setState({
+                    isLoad: true,
+                    feed: json
+                })
+            })
+            //console.log(`Feed Load From ${cacheKey}`)
+            return
         }
-        return fetch(url).then((res) => {
-            if (res.status === 200) {
-                res.clone().text().then(content => {
-                    sessionStorage.setItem(cacheKey, content); 
-                }) 
-            }
-            return res.json();
 
-        }).then((json) => {
-            this.setState({feed: json, isLoaded: true}); 
-            console.log(this.state.feed); 
-        });
+        this.setState({
+            isLoad: true,
+            feed: JSON.parse(cached)  
+        })
+        //console.log(`Feed Load From SessionStorage`)
     }
 
-    componentDidMount(){
-        this.fetchCache(); 
-    }
-    Lazy(){
-        [].forEach.call(
-                document.querySelectorAll('.card-img[data-src]'), function(img){
-                    img.style.backgroundImage = `url("${img.getAttribute('data-src')}")`;
-                    img.style.opacity = 100; 
-                });
-    }
-
-    componentDidUpdate(){
-        this.Lazy(); 
-    }
-
-    render() {
-        if(! this.state.isLoaded ){
-            return (
-                    <div className="card"  alt="Loading content ...">
-                    <div className="card-img" >
-                    </div>
-                    <div className="card-body">
-                    <h1 className="card-title bg-blue-dark text-blue-dark">wkwkwkwkwkwkwkkw</h1>
-                    <div className="text-blue-dark bg-blue-dark card-caption">
-                    {'wk'.repeat(170)}
-                    </div>
-                    </div> 
-                    </div>        
-                   );
-        }
+    render(){
         return (
-                <div className="article">
-                <CardList items={this.state.feed.items} />
-                </div>
-               );
+            <Provider value={this.state}>
+            <Router>
+            <div className="h-full">
+            <Header />
+            <Switch>
+            <Route path="/" exact component={Articles} />
+            <Route path="/article/:slug" exact name="article" component={Articles}/>
+            <Route path="/categories/:categories" exact name="categories" component={Articles}/>
+            <Route path="/author/:author" exact name="author" component={Articles}/>
+            </Switch>
+            <Footer/>
+            </div>
+            </Router>
+            </Provider>
+        )
     }
 }
 
-export default App;
+export default App 

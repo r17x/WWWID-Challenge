@@ -10,21 +10,29 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^3.1.0",
     "npm": "^5.6.0",
+    "nprogress": "^0.2.0",
     "postcss-import": "^11.1.0",
     "precss": "^3.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-ionicons": "^2.1.6",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "tailwindcss": "^0.4.1"
+    "tailwindcss": "^0.4.1",
+    "typeface-roboto": "0.0.54"
   },
+  "homepage": "https://ri7nz.github.io/",
   "scripts": {
     "start": "react-scripts start",
-    "production": "react-scripts build && gulp purifycss && gulp purgecss && firebase deploy",
+    "production": "react-scripts build && gulp purifycss && gulp purgecss",
     "deploy": "firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "gh-pages": "^1.1.0",
+    "glob-all": "^3.1.0"
   }
 }
