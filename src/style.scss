@@ -233,6 +233,26 @@ header, .header {
 
 }
 
+.card.single{
+    max-height: 100%;
+    @apply flex flex-col;
+
+    figure {
+        @apply flex flex-col justify-center items-center; 
+    }
+    figcaption {
+        @apply pb-4 italic underline; 
+    }
+    .card-caption {
+        p {
+            @apply px-4 ;
+        } 
+        h3 {
+            @apply py-4 ;
+        }
+    }
+}
+
 #r00t {
     @apply h-full;
 }

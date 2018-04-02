@@ -20,7 +20,7 @@ const TagList = (props) => {
 }
 const Card     = (props) => {
     return (
-            <div className="card" role="Listitem"  alt={props.title} >
+            <div className={ props.single ? "card single" : "card" } role="Listitem"  alt={props.title} >
             <div className="card-img" role="img" 
             style={{backgroundImage: '' }}
             data-src={props.thumbnail }
@@ -30,8 +30,10 @@ const Card     = (props) => {
             <Link to={'/article/'+props.slug}alt={props.title}>
             <h1 className="card-title text-black"> { props.title } </h1>
             </Link>
-            <div className="card-caption">
-            { toText( props.content, 200 ) }
+            <div className="card-caption" 
+                dangerouslySetInnerHTML={{
+                    __html: props.single ? props.content :  toText( props.content, 200 ) 
+            }}>
             </div>
             <div className="card-footer">
                 <ul>
@@ -58,7 +60,7 @@ const Card     = (props) => {
 const CardList = props => {
     return (
             <div className="cards">
-            {props.items.map( (item,index) => <Card {...item} key={index}  /> )}
+            {props.items.map( (item,index) => <Card {...item} key={index}  single={props.single}/> )}
             </div> 
            )
 }

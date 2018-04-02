@@ -8,7 +8,7 @@ export const filter = (params, data) => {
     let key = Object.keys(params)[0]
     let value = params[key]
     let { feed } = data 
-
+    
     data.feed.filter = true
     data.feed.filterBy = key
     data.feed.itemFilter = feed.items.filter( e => {
@@ -31,9 +31,13 @@ export const getContext = Components =>
 
                     if( Object.keys(params).length === 1 && 'items' in feed){
                         data = filter(params, data)
+                        data.single = 'slug' in params ? true:false
                     }
 
-                    else data.feed.filter = false 
+                    else {
+                        data.feed.filter = false 
+                        data.single = 'slug' in params ? true:false
+                    }
 
                     return ( <Components 
                         {...data}

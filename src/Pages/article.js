@@ -25,12 +25,12 @@ class Articles extends Component {
     }
 
     render() {
-        let { isLoad, feed } = this.props
+        let { isLoad, feed, single } = this.props
 
         if(isLoad && 'items' in feed ){
             return (
                <div className="pages" >
-               <CardList items={feed.filter ? feed.itemFilter : feed.items} />
+               <CardList items={feed.filter ? feed.itemFilter : feed.items} single={single} />
                </div>
             )
         }

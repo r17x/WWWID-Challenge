@@ -78,7 +78,7 @@ class App extends Component {
             <Header />
             <Switch>
             <Route path="/" exact component={Articles} />
-            <Route path="/article/:title" exact name="article" component={Articles}/>
+            <Route path="/article/:slug" exact name="article" component={Articles}/>
             <Route path="/categories/:categories" exact name="categories" component={Articles}/>
             <Route path="/author/:author" exact name="author" component={Articles}/>
             </Switch>

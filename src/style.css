@@ -828,6 +828,30 @@ header .nav ul li,
 .card .card-footer .meta label .author {
   color: #3d4852; }
 
+.card.single {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.card.single figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.card.single figcaption {
+  padding-bottom: 1rem;
+  font-style: italic;
+  text-decoration: underline; }
+
+.card.single .card-caption p {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.card.single .card-caption h3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
 #r00t {
   height: 100%; }
 
