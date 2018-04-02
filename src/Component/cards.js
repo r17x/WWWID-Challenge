@@ -38,10 +38,12 @@ const Card     = (props) => {
                 { props.categories.map( (tag, index) => <TagList key={index} num={index} tag={tag}/>  ) } 
                 </ul>
                 <div className="meta">
+                <Link to={ "/author/" + props.author } alt={"Feed By @" + props.author}>
                 <label className="author" rel="author" alt={props.author}>
                     <Icon icon={'ios-contact'} color={'#20232a'}></Icon> 
                     {props.author}
                 </label>
+                </Link>
                 <label className="pubDate" alt={props.humandate}>
                     <Icon icon={'ios-calendar-outline'} color={'#20232a'}></Icon>
                     {props.humandate}

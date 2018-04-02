@@ -16,7 +16,6 @@ import { Provider } from './Component/AppContext'
 class App extends Component {
     constructor(props){
         super(props)
-        this.filters.bind(this)
         this.state = {
             uri: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid",
             feed: [],
@@ -80,7 +79,8 @@ class App extends Component {
             <Switch>
             <Route path="/" exact component={Articles} />
             <Route path="/article/:title" exact name="article" component={Articles}/>
-            <Route path="/categories/:cat" exact name="categories" component={Articles}/>
+            <Route path="/categories/:categories" exact name="categories" component={Articles}/>
+            <Route path="/author/:author" exact name="author" component={Articles}/>
             </Switch>
             <Footer/>
             </div>

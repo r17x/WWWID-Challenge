@@ -4,6 +4,21 @@ const AppContext = createContext()
 
 export const { Provider, Consumer } = AppContext
 
+export const filter = (params, data) => {
+    let key = Object.keys(params)[0]
+    let value = params[key]
+    let { feed } = data 
+
+    data.feed.filter = true
+    data.feed.filterBy = key
+    data.feed.itemFilter = feed.items.filter( e => {
+        return  Array.isArray(e[key]) ? e[key].includes(value) :
+            typeof e[key] === 'string' && e[key] === value
+    } )
+
+    return data 
+}
+
 export const getContext = Components => 
     class GetContext extends Component {
         render (){
@@ -14,16 +29,10 @@ export const getContext = Components =>
                     let { params } = match
                     let { feed } = data 
 
-                    if( Object.keys(params).length > 0 && 'cat' in params){
-                        if ('items' in feed){
-                            data.feed.filter = true
-                            data.feed.itemFilter = feed.items.filter( e => {
-                                console.log(params)
-                                console.log(e.categories)
-                                return e.categories.includes(params.cat)
-                            } )
-                        }
+                    if( Object.keys(params).length === 1 && 'items' in feed){
+                        data = filter(params, data)
                     }
+
                     else data.feed.filter = false 
 
                     return ( <Components 
