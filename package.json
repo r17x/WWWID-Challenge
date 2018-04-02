@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "production": "react-scripts build && gulp purifycss && gulp purgecss",
     "deploy": "firebase deploy",
-    "build": "react-scripts build && gulp copy",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

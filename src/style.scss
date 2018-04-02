@@ -40,12 +40,10 @@ header, .header {
            justify-center items-center 
            shadow-md shadow leading-tight px-4 py-2;
     min-height: 10%; 
-    background-color: #F2F2F2; 
+    background-color: #20232a;
 
     h1,h2,h3,h4,p {
-
-        @apply text-grey-darkest; 
-
+        color: #61dafb;
     }
 
     h1 { 
@@ -67,7 +65,7 @@ header, .header {
     }
 
     .nav {
-        @apply w-full   border-t-2 border-b-2 border-grey-darker items-center; 
+        @apply w-full items-center; 
         @screen md{
             @apply flex justify-center w-2/3;
         }

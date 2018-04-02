@@ -49,7 +49,7 @@ export default function register() {
         registerValidSW(swUrl);
       }
     });
-
+    // User Prompt
     window.addEventListener('beforeinstallprompt', e => {
         e.userChoice.then( choiceResult => {
             if(choiceResult.outcome === 'dismissed')
@@ -58,6 +58,7 @@ export default function register() {
                console.log('User Berhasil Menambahkan ke Homescreen'); 
         });
     });
+    
   }
 }
 

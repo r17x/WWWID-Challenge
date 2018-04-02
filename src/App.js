@@ -1,5 +1,5 @@
 /* ReactJS */
-import React, { Component, createContext } from 'react'
+import React, { Component } from 'react'
 /* React Router */
 import { BrowserRouter as Router }  from 'react-router-dom' 
 import { Switch, Route } from 'react-router' 
@@ -11,7 +11,7 @@ import Articles from './Pages/article'
 /* Other */
 import toSlug  from './Slugify'
 import Lazy from './Component/Lazy' 
-import { Provider, Consumer } from './AppContext'
+import { Provider } from './AppContext'
 
 class App extends Component {
     constructor(props){
@@ -64,7 +64,6 @@ class App extends Component {
     }
 
     render(){
-        console.log(this.context)
         return (
             <Provider value={this.state}>
             <Router>
