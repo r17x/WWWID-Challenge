@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Loading  from 'nprogress' 
 import CardList from '../Component/cards'
 import CardLoading from '../Component/cardloading'
-import {getContext} from '../AppContext'
+import Lazy from '../Component/Lazy'
+import {getContext} from '../Component/AppContext'
 
 class Articles extends Component {
     componentWillMount(){
@@ -14,12 +15,22 @@ class Articles extends Component {
         Loading.done() 
     }
 
+    componentWillUpdate(){
+        Loading.start() 
+    }
+
+    componentDidUpdate(){
+        Loading.done() 
+        Lazy()
+    }
+
     render() {
         let { isLoad, feed } = this.props
+
         if(isLoad && 'items' in feed ){
             return (
-               <div className="pages">
-               <CardList items={feed.items} />
+               <div className="pages" >
+               <CardList items={feed.filter ? feed.itemFilter : feed.items} />
                </div>
             )
         }

@@ -9,20 +9,25 @@ import Footer   from './Component/footer'
 /* Pages */
 import Articles from './Pages/article' 
 /* Other */
-import toSlug  from './Slugify'
+import toSlug  from './Component/Slugify'
 import Lazy from './Component/Lazy' 
-import { Provider } from './AppContext'
+import { Provider } from './Component/AppContext'
 
 class App extends Component {
     constructor(props){
         super(props)
+        this.filters.bind(this)
         this.state = {
             uri: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid",
             feed: [],
-            isLoad: false
+            isLoad: false,
+            query: this.filters
         }
     }
 
+    filters(param){
+        console.log(this.state.feed)  
+    }
     componentDidMount(){
         this.fetchCache()
     }
@@ -30,7 +35,7 @@ class App extends Component {
     componentDidUpdate(){
         Lazy() 
     }
-    
+
     fetchCache(){
         let url      = this.state.uri
         let cacheKey = url
@@ -43,7 +48,10 @@ class App extends Component {
                 }
             }).then( json => {
                 json.items.map( item => {
+                    let parseDate = new Date(item.pubDate)
                     item.slug = toSlug(item.title) 
+                    item.UTCpubDate = parseDate.toUTCString()
+                    item.humandate = parseDate.toDateString()
                     return item
                 })
                 sessionStorage.setItem(cacheKey, JSON.stringify(json))
@@ -71,7 +79,8 @@ class App extends Component {
             <Header />
             <Switch>
             <Route path="/" exact component={Articles} />
-            <Route path="/article/:id" exact component={Articles}/>
+            <Route path="/article/:title" exact name="article" component={Articles}/>
+            <Route path="/categories/:cat" exact name="categories" component={Articles}/>
             </Switch>
             <Footer/>
             </div>

@@ -1,5 +1,6 @@
 import React, { createElement } from 'react'
 import { Link } from 'react-router-dom'
+import Icon  from 'react-ionicons'; 
 
 const toText   = (content, limit=0, except=' ...') => {
     content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
@@ -14,7 +15,8 @@ const TagList = (props) => {
     if (props.num >=2){
         return '' 
     }
-    return createElement('li', { className: 'card-tags' }, props.tag);
+    let tag = createElement('li', { className: 'card-tags', rel: 'tag' }, props.tag)
+    return <Link to={'/categories/' + props.tag} alt={props.tag}>{tag}</Link>
 }
 const Card     = (props) => {
     return (
@@ -25,7 +27,7 @@ const Card     = (props) => {
             >
             </div>
             <div className="card-body">
-            <Link to={'article'} param={props.slug} alt={props.title}>
+            <Link to={'/article/'+props.slug}alt={props.title}>
             <h1 className="card-title text-black"> { props.title } </h1>
             </Link>
             <div className="card-caption">
@@ -35,7 +37,16 @@ const Card     = (props) => {
                 <ul>
                 { props.categories.map( (tag, index) => <TagList key={index} num={index} tag={tag}/>  ) } 
                 </ul>
-                <div className="author" rel="author">{props.author}</div>
+                <div className="meta">
+                <label className="author" rel="author" alt={props.author}>
+                    <Icon icon={'ios-contact'} color={'#20232a'}></Icon> 
+                    {props.author}
+                </label>
+                <label className="pubDate" alt={props.humandate}>
+                    <Icon icon={'ios-calendar-outline'} color={'#20232a'}></Icon>
+                    {props.humandate}
+                </label>
+                </div>
             </div>
             </div> 
             </div>        

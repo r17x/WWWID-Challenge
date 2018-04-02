@@ -162,11 +162,10 @@ header, .header {
 .card {
 
     @apply m-2 mb-4
-    overflow-hidden 
+    overflow-hidden shadow
     flex flex-col justify-center
     w-full border-solid border-2 border-grey-lighter
     h-auto; 
-    transition: border 1.5s ease-out; 
     max-height: 70%; 
 
     @screen md {
@@ -175,9 +174,6 @@ header, .header {
 
     @screen lg {
         @apply flex-row inline-flex;
-    }
-    &:hover, &:focus{
-        @apply cursor-pointer border-grey-darker;   
     }
 
     .card-img { 
@@ -202,7 +198,7 @@ header, .header {
     
     .card-footer{
         @apply pt-2 flex flex-col;
-        ul, .author {
+        ul {
             @apply flex inline-flex justify-start;
             padding: 0; 
         }
@@ -212,6 +208,8 @@ header, .header {
                    px-3 py-1 text-xs
                    font-semibold text-grey-darker 
                    my-2 mx-1;
+        }    
+        .card-tags{
             &:first-child{
                 margin-left: 0;  
             }
@@ -219,7 +217,18 @@ header, .header {
             &:before{
                 content: '#'; 
             }
-        }    
+        }
+
+        .meta{
+            @apply flex justify-between text-sm; 
+
+            label {
+                @apply inline-flex items-center cursor-pointer text-grey-darker tracking-tight; 
+                .author { 
+                @apply text-grey-darkest;  
+                }
+            }
+        }
     }
 
 }
