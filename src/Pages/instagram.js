@@ -41,7 +41,7 @@ class App extends Component {
                 feed: json.user.media.nodes, 
                 isLoaded: true
             }); 
-            console.log(this.state.feed); 
+            //console.log(this.state.feed); 
         });
     }
     componentWillMount(){

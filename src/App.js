@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     filters(param){
-        console.log(this.state.feed)  
+        //console.log(this.state.feed)  
     }
     componentDidMount(){
         this.fetchCache()
@@ -59,7 +59,7 @@ class App extends Component {
                     feed: json
                 })
             })
-            console.log(`Feed Load From ${cacheKey}`)
+            //console.log(`Feed Load From ${cacheKey}`)
             return
         }
 
@@ -67,7 +67,7 @@ class App extends Component {
             isLoad: true,
             feed: JSON.parse(cached)  
         })
-        console.log(`Feed Load From SessionStorage`)
+        //console.log(`Feed Load From SessionStorage`)
     }
 
     render(){
