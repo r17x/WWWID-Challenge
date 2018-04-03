@@ -25,16 +25,15 @@ export const getContext = Components =>
             return (
             <AppContext.Consumer>
                 { data =>{
-                    let { match } = this.props
-                    let { params } = match
-                    let { feed } = data 
-
-                    if( Object.keys(params).length === 1 && 'items' in feed){
+                    let { match }  = this.props,
+                        { params } = match,
+                        { feed }   = data 
+                    
+                    if( Object.keys(params).length === 1 && 
+                        'items' in feed){
                         data = filter(params, data)
                         data.single = 'slug' in params ? true:false
-                    }
-
-                    else {
+                    }else {
                         data.feed.filter = false 
                         data.single = 'slug' in params ? true:false
                     }
