@@ -20,13 +20,9 @@ class App extends Component {
             uri: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2Fwwwid",
             feed: [],
             isLoad: false,
-            query: this.filters
         }
     }
 
-    filters(param){
-        //console.log(this.state.feed)  
-    }
     componentDidMount(){
         this.fetchCache()
     }

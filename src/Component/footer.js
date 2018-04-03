@@ -47,7 +47,7 @@ const logoList = [
 
 const IconList = props => {
     return (
-        <li keys>
+        <li>
         <a href={props.uri} rel="noopener" target="_blank" alt={props.uri}>
         <Icon {...props}></Icon>
         </a>
