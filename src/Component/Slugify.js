@@ -3,8 +3,9 @@ const toSlug = text => {
     return text.toString().toLowerCase()
         .replace(/\s+/g, '-')
         .replace(/&/g, '-and-') 
-        .replace(/[^\w/\-]+/g, '')
-        .replace(/\-\-+/g, '-')
+        .replace(/[^\w/\\-]+/g, '')
+        .replace(/\/-\/-+/g, '-')
+        .replace(/\x2f/, '-')
 }
 
 export default toSlug
