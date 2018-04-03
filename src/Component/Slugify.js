@@ -5,7 +5,7 @@ const toSlug = text => {
         .replace(/&/g, '-and-') 
         .replace(/[^\w/\\-]+/g, '')
         .replace(/\/-\/-+/g, '-')
-        .replace(/\x2f/, '-')
+        .replace(/\x2f/, '-') // change from / to - 
 }
 
 export default toSlug
