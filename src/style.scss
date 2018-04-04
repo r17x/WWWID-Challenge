@@ -121,7 +121,7 @@ header, .header {
 .pages {
     @apply flex justify-center  w-full; 
     background-color: #FFF; 
-    min-height: 80%; 
+    min-height: 95%;
     p {
         @apply text-grey-darkest;  
     }
@@ -160,14 +160,15 @@ header, .header {
     }
 }
 .cards {
-    @apply w-full flex flex-wrap p-4 justify-center; 
+    @apply w-full flex flex-wrap justify-center; 
+    padding: .2rem; 
 
     @screen md{
-        @apply justify-start w-2/3; 
+        @apply justify-start w-2/3 p-4; 
     }
 
     @screen lg{
-        @apply justify-start w-2/3; 
+        @apply justify-start w-2/3 p-4; 
     }
 }
 .card-ig {
@@ -205,7 +206,13 @@ header, .header {
     }
     .card-body {
 
-        @apply px-6 py-4 w-full;
+        @apply w-full p-2;
+        @screen lg{
+            @apply px-6 py-4; 
+        }
+        @screen md{
+            @apply px-6 py-4; 
+        }
 
         .card-title { @apply font-semibold text-xl mb-2; }
 
@@ -262,10 +269,10 @@ header, .header {
     }
     .card-caption {
         p {
-            @apply px-4 ;
+            @apply pb-2;
         } 
         h3 {
-            @apply py-4 ;
+            @apply pb-4 ;
         }
     }
 }

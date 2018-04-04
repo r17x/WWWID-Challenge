@@ -683,7 +683,7 @@ header .nav ul li,
   justify-content: center;
   width: 100%;
   background-color: #fff;
-  min-height: 80%; }
+  min-height: 95%; }
 
 .pages p {
   color: #3d4852; }
@@ -741,16 +741,18 @@ header .nav ul li,
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
-  justify-content: center; }
+  justify-content: center;
+  padding: .2rem; }
   @media (min-width: 768px) {
     .cards {
       justify-content: flex-start;
-      width: 66.66667%; } }
+      width: 66.66667%;
+      padding: 1rem; } }
   @media (min-width: 992px) {
     .cards {
       justify-content: flex-start;
-      width: 66.66667%; } }
+      width: 66.66667%;
+      padding: 1rem; } }
 
 .card-ig {
   padding: .5rem;
@@ -790,11 +792,20 @@ header .nav ul li,
   transition: opacity .3s; }
 
 .card .card-body {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  width: 100%; }
+  width: 100%;
+  padding: .5rem; }
+  @media (min-width: 992px) {
+    .card .card-body {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem; } }
+  @media (min-width: 768px) {
+    .card .card-body {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem; } }
 
 .card .card-body .card-title {
   font-weight: 600;
@@ -870,11 +881,9 @@ header .nav ul li,
   text-decoration: underline; }
 
 .card.single .card-caption p {
-  padding-left: 1rem;
-  padding-right: 1rem; }
+  padding-bottom: .5rem; }
 
 .card.single .card-caption h3 {
-  padding-top: 1rem;
   padding-bottom: 1rem; }
 
 #r00t {
