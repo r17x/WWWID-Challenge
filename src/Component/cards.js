@@ -15,7 +15,7 @@ export const TagList = (props) => {
     if (props.num >=2){
         return '' 
     }
-    let tag = createElement('li', { className: 'card-tags', rel: 'tag' }, props.tag)
+    let tag = createElement('li', { className: 'card-tags', rel: 'tag' }, 'text' in props  ? props.text : props.tag)
     return <Link to={'/categories/' + props.tag} alt={props.tag}>{tag}</Link>
 }
 const Card     = (props) => {
@@ -69,8 +69,8 @@ export const CatList = props => {
     return(
         <div className="categories">     
         {props.items.map( (item,index) => {
-            item = item.replace(/[^a-zA-Z0-9]+/g, ' ')
-            return <TagList tag={item} key={index} /> 
+            let text = item.replace(/[^a-zA-Z0-9]+/g, ' ')
+            return <TagList text={text} tag={item} key={index} /> 
         })}
         </div>
     )
