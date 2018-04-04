@@ -23,19 +23,26 @@ class App extends Component {
         }
     }
 
+
     async componentDidMount(){
         //this.fetchCache()
         const res = await fetch(this.state.uri),
               data = await res.json()
 
+        let listCat = []
         data.items = data.items.map(item => {
            let parseDate = new Date(item.pubDate)
            item.slug = toSlug(item.title) 
            item.UTCpubDate = parseDate.toUTCString()
            item.humandate = parseDate.toDateString()
+           item.categories.map( e => {
+                if (! listCat.includes(e)) 
+                    listCat.push(e)
+                return e 
+           })
            return item
         })
-        
+        data.categories = listCat 
         await this.setStateAsync({
             feed: data,
             isLoad: true 
@@ -96,6 +103,7 @@ class App extends Component {
             <Switch>
             <Route path="/" exact component={Articles} />
             <Route path="/article/:slug" exact name="article" component={Articles}/>
+            <Route path="/categories" exact name="categorieslist" component={Articles}/>
             <Route path="/categories/:categories" exact name="categories" component={Articles}/>
             <Route path="/author/:author" exact name="author" component={Articles}/>
             </Switch>

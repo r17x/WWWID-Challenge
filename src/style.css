@@ -564,9 +564,7 @@ header,
   line-height: 1.25;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  min-height: 10%;
+  height: auto;
   background-color: #20232a; }
 
 header h1,
@@ -610,18 +608,16 @@ header a:focus,
 header .nav,
 .header .nav {
   width: 100%;
-  align-items: center; }
+  align-items: center;
+  display: inline-flex;
+  justify-content: space-between; }
   @media (min-width: 768px) {
     header .nav,
     .header .nav {
-      display: flex;
-      justify-content: center;
       width: 66.66667%; } }
   @media (min-width: 992px) {
     header .nav,
     .header .nav {
-      display: flex;
-      justify-content: center;
       width: 66.66667%; } }
 
 header .nav ul,
@@ -687,17 +683,47 @@ header .nav ul li,
   justify-content: center;
   width: 100%;
   background-color: #fff;
-  min-height: 73%; }
+  min-height: 80%; }
 
 .pages p {
   color: #3d4852; }
 
-.pages.instagram {
-  flex-wrap: wrap; }
+.pages .categories {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem; }
+  @media (min-width: 768px) {
+    .pages .categories {
+      padding-left: 1rem;
+      padding-right: 1rem; } }
+  @media (min-width: 992px) {
+    .pages .categories {
+      padding-left: 1rem;
+      padding-right: 1rem; } }
 
-.pages.instagram .card-img {
-  background-size: cover;
-  height: 100%; }
+.pages .categories a {
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: .5rem;
+  width: 100%; }
+  @media (min-width: 768px) {
+    .pages .categories a {
+      width: 75%; } }
+  @media (min-width: 992px) {
+    .pages .categories a {
+      width: 66.66667%; } }
+
+.pages .categories a li {
+  letter-spacing: .05em;
+  font-size: 1.125rem;
+  color: #20232a;
+  text-transform: capitalize; }
 
 .home {
   width: 100%;
@@ -715,7 +741,7 @@ header .nav ul li,
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: .5rem;
+  padding: 1rem;
   justify-content: center; }
   @media (min-width: 768px) {
     .cards {
@@ -732,7 +758,6 @@ header .nav ul li,
   width: 13rem; }
 
 .card {
-  margin: .5rem;
   margin-bottom: 1rem;
   overflow: hidden;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);

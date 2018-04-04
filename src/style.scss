@@ -38,10 +38,9 @@ body {
 header, .header { 
     @apply w-full flex flex-col 
            justify-center items-center 
-           shadow-md shadow leading-tight px-4 py-2;
-    min-height: 10%; 
+           shadow-md shadow leading-tight px-4
+           h-auto; 
     background-color: #20232a;
-
     h1,h2,h3,h4,p {
         color: #61dafb;
     }
@@ -65,12 +64,12 @@ header, .header {
     }
 
     .nav {
-        @apply w-full items-center; 
+        @apply w-full items-center inline-flex justify-between; 
         @screen md{
-            @apply flex justify-center w-2/3;
+            @apply w-2/3;
         }
         @screen lg{
-            @apply flex justify-center w-2/3;
+            @apply w-2/3;
         }
         ul {
             @apply flex flex-wrap list-reset my-4 justify-between;
@@ -122,18 +121,35 @@ header, .header {
 .pages {
     @apply flex justify-center  w-full; 
     background-color: #FFF; 
-    min-height: 73%; 
+    min-height: 80%; 
     p {
         @apply text-grey-darkest;  
     }
-}
-.pages.instagram {
-    @apply flex-wrap; 
-    .card-img {
-        @apply bg-cover; 
-        height: 100%; 
+    .categories {
+        @apply flex flex-col list-reset w-full items-center justify-center py-2; 
+        @screen md{
+            @apply px-4; 
+        }
+        @screen lg{
+            @apply px-4; 
+        }
+        a {
+            @apply mb-4  shadow p-2 w-full;    
+            @screen md {
+                @apply w-3/4; 
+            }
+            @screen lg {
+                @apply w-2/3; 
+            }
+            li{
+                @apply tracking-wide text-lg; 
+                color: #20232a; 
+                text-transform: capitalize; 
+            }
+        }
     }
 }
+
 .home{
     @apply w-full p-6;
     @screen lg {
@@ -144,7 +160,7 @@ header, .header {
     }
 }
 .cards {
-    @apply w-full flex flex-wrap p-2 justify-center; 
+    @apply w-full flex flex-wrap p-4 justify-center; 
 
     @screen md{
         @apply justify-start w-2/3; 
@@ -161,12 +177,13 @@ header, .header {
 }
 .card {
 
-    @apply m-2 mb-4
+    @apply mb-4
     overflow-hidden shadow
     flex flex-col justify-center
     w-full border-solid border-2 border-grey-lighter
     h-auto; 
     max-height: 70%; 
+
 
     @screen md {
         @apply flex-row inline-flex;
