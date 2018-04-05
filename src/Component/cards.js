@@ -2,20 +2,22 @@ import React, { createElement } from 'react'
 import { Link } from 'react-router-dom'
 import Icon  from 'react-ionicons'; 
 
-const toText   = (content, limit=0, except=' ...') => content
+export const toText   = (text, limit=0, except=' ...') => text 
        .split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
-       .filter((v) => v.length > 100)[0]
+       .filter(v => v.length > 100)[0]
        .replace(/<[^>]+>/g, '')
        .substring(0,limit) + except
 
 export const TagList = (props) => {
-    if (props.num >=2){
-        return '' 
-    }
-    let tag = createElement('li', { className: 'card-tags', rel: 'tag' }, 'text' in props  ? props.text : props.tag)
-    return <Link to={'/categories/' + props.tag} alt={props.tag}>{tag}</Link>
+    let tag = createElement(
+       'li', 
+       { className: 'card-tags', rel: 'tag' }, 
+       'text' in props  ? props.text : props.tag
+    )
+    return props.num >= props.limit ? '' : <Link to={'/categories/' + props.tag} alt={props.tag}>{tag}</Link>
 }
-const Card     = (props) => {
+
+export const Card    = (props) => {
     return (
             <div className={ props.single ? "card single" : "card" } role="Listitem"  alt={props.title} >
             <div className="card-img" role="img" 
@@ -34,7 +36,7 @@ const Card     = (props) => {
             </div>
             <div className="card-footer">
                 <ul>
-                { props.categories.map( (tag, index) => <TagList key={index} num={index} tag={tag}/>  ) } 
+                { props.categories.map( (tag, index) => <TagList key={index} num={index} limit={2} tag={tag}/>  ) } 
                 </ul>
                 <div className="meta">
                 <Link to={ "/author/" + props.author } alt={"Feed By @" + props.author}>
