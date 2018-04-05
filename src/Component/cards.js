@@ -2,14 +2,11 @@ import React, { createElement } from 'react'
 import { Link } from 'react-router-dom'
 import Icon  from 'react-ionicons'; 
 
-const toText   = (content, limit=0, except=' ...') => {
-    content     = content.split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
-    content     = content.filter((v) => {
-        return v.length > 100 
-    })
-    content   = content[0].replace(/<[^>]+>/g, '')
-    return content.substring(0,limit) + except
-}
+const toText   = (content, limit=0, except=' ...') => content
+       .split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
+       .filter((v) => v.length > 100)[0]
+       .replace(/<[^>]+>/g, '')
+       .substring(0,limit) + except
 
 export const TagList = (props) => {
     if (props.num >=2){
