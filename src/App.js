@@ -23,48 +23,76 @@ class App extends Component {
         }
     }
 
-    componentDidMount(){
-        this.fetchCache()
+
+    async componentDidMount(){
+        //this.fetchCache()
+        const res = await fetch(this.state.uri),
+              data = await res.json()
+
+        let listCat = []
+        data.items = data.items.map(item => {
+           let parseDate = new Date(item.pubDate)
+           item.slug = toSlug(item.title) 
+           item.UTCpubDate = parseDate.toUTCString()
+           item.humandate = parseDate.toDateString()
+           item.categories.map( e => {
+                if (! listCat.includes(e)) 
+                    listCat.push(e)
+                return e 
+           })
+           return item
+        })
+        data.categories = listCat 
+        await this.setStateAsync({
+            feed: data,
+            isLoad: true 
+        })
+    }
+    
+    setStateAsync(state){
+        return new Promise( res => {
+            this.setState(state, res)
+        }) 
     }
     
     componentDidUpdate(){
         Lazy() 
     }
 
-    fetchCache(){
-        let url      = this.state.uri
-        let cacheKey = url
-        let cached   = sessionStorage.getItem(cacheKey)
+    //fetchCache(){
+    //    let url      = this.state.uri
+    //    let cacheKey = url
+    //    let cached   = sessionStorage.getItem(cacheKey)
 
-        if ( cached === null ){
-            fetch(url).then((res) => {
-                if (res.status === 200) {
-                    return res.json()
-                }
-            }).then( json => {
-                json.items.map( item => {
-                    let parseDate = new Date(item.pubDate)
-                    item.slug = toSlug(item.title) 
-                    item.UTCpubDate = parseDate.toUTCString()
-                    item.humandate = parseDate.toDateString()
-                    return item
-                })
-                sessionStorage.setItem(cacheKey, JSON.stringify(json))
-                this.setState({
-                    isLoad: true,
-                    feed: json
-                })
-            })
-            //console.log(`Feed Load From ${cacheKey}`)
-            return
-        }
+    //    if ( cached === null ){
+    //        fetch(url).then((res) => {
+    //            if (res.status === 200) {
+    //                return res.json()
+    //            }
+    //        }).then( json => {
+    //            json.items.map( item => {
+    //                let parseDate = new Date(item.pubDate)
+    //                item.slug = toSlug(item.title) 
+    //                item.UTCpubDate = parseDate.toUTCString()
+    //                item.humandate = parseDate.toDateString()
+    //                return item
+    //            })
+    //            sessionStorage.setItem(cacheKey, JSON.stringify(json))
+    //            this.setState({
+    //                isLoad: true,
+    //                feed: json
+    //            })
+    //        })
+    //        //console.log(`Feed Load From ${cacheKey}`)
+    //        return
+    //    }
 
-        this.setState({
-            isLoad: true,
-            feed: JSON.parse(cached)  
-        })
-        //console.log(`Feed Load From SessionStorage`)
-    }
+    //    this.setState({
+    //        isLoad: true,
+    //        feed: JSON.parse(cached)  
+    //    })
+    //    //console.log(`Feed Load From SessionStorage`)
+    //}
 
     render(){
         return (
@@ -75,6 +103,7 @@ class App extends Component {
             <Switch>
             <Route path="/" exact component={Articles} />
             <Route path="/article/:slug" exact name="article" component={Articles}/>
+            <Route path="/categories" exact name="categorieslist" component={Articles}/>
             <Route path="/categories/:categories" exact name="categories" component={Articles}/>
             <Route path="/author/:author" exact name="author" component={Articles}/>
             </Switch>

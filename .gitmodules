@@ -1,0 +1,3 @@
+[submodule "AALighthouse"]
+	path = AALighthouse
+	url = git@github.com:ri7nz/AALighthouse.git

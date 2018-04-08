@@ -29,13 +29,16 @@ export const getContext = Components =>
                         { params } = match,
                         { feed }   = data 
                     
+                    data.feed.filter = false 
+                    data.single = false
+                    data.catPage = false 
+
                     if( Object.keys(params).length === 1 && 
                         'items' in feed){
                         data = filter(params, data)
                         data.single = 'slug' in params ? true:false
-                    }else {
-                        data.feed.filter = false 
-                        data.single = 'slug' in params ? true:false
+                    }else if(match.path === '/categories') {
+                        data.catPage = true
                     }
 
                     return ( <Components 
