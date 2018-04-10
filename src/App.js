@@ -35,6 +35,8 @@ class App extends Component {
            item.slug = toSlug(item.title) 
            item.UTCpubDate = parseDate.toUTCString()
            item.humandate = parseDate.toDateString()
+           item.image = item.thumbnail
+           item.thumbnail = item.thumbnail.replace(/\/max\/(.+)\//g, '/max/350/')
            item.categories.map( e => {
                 if (! listCat.includes(e)) 
                     listCat.push(e)
