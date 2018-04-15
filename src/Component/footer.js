@@ -6,6 +6,7 @@ const color = 'white',
 const logoList = [
     {
         icon : 'logo-linkedin',
+        alt : 'connect me (@ri7nz) on linkedin',
         fontSize: fSize,
         color: color,
         uri: 'https://www.linkedin.com/in/r-adysurya-agus-81083210a/',
@@ -14,32 +15,32 @@ const logoList = [
         icon : 'logo-github',
         fontSize: fSize,
         color: color,
+        alt : 'follow me (@ri7nz) on github',
         uri: 'https://www.github.com/ri7nz',
     },
     {
         icon : 'logo-facebook',
         fontSize: fSize,
         color: color,
+        alt : 'Add me (@ri7nz) on facebook',
         uri: 'https://fb.me/ri7nz',
     },
     {
-        icon : 'md-heart',
+        alt : 'This made with Love',
+        icon : 'md-heart'  ,
         fontSize: '35px',
         color: '#ED4956',
         beat: true
     },
     {
+        alt : 'This made with NodeJs',
         icon : 'logo-nodejs',
         fontSize: fSize,
         color: '#43853d',
     },
     {
-        icon : 'logo-python',
-        fontSize: fSize,
-        color: 'orange',
-    },
-    {
         icon : 'logo-sass',
+        alt: "This Made with SAAS",
         fontSize: fSize,
         color: '#CF649A',
     },
@@ -48,7 +49,7 @@ const logoList = [
 const IconList = props => {
     return (
         <li>
-        <a href={props.uri} rel="noopener" target="_blank" alt={props.uri}>
+        <a href={props.uri} rel="noopener" target="_blank" alt={props.alt}>
         <Icon {...props}></Icon>
         </a>
         </li>     
@@ -59,7 +60,7 @@ const Footer = () => {
     return (
         <footer>
         <div className="footer-content"> 
-        <ul className="social my-4">
+        <ul className="social my-4" alt="Social Link">
         { logoList.map( (logo, index)  => <IconList {...logo} key={index} /> ) }   
         </ul>
         </div>
