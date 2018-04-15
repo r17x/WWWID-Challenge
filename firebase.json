@@ -12,8 +12,7 @@
             {
                 "source": "**/*.@(js|css)",
                 "headers":[
-                    {"key": "Cache-Control","value": "max-age=108000000"},
-                    {"key": "Link", "value": "<https://ray7-175908.firebaseapp.com/>; rel=preload"}
+                    {"key": "Cache-Control","value": "max-age=108000000"}
                 ]  
             },
             {
