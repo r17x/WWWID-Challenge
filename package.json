@@ -22,7 +22,7 @@
     "tailwindcss": "^0.4.1",
     "typeface-roboto": "0.0.54"
   },
-  "homepage": "https://ri7nz.github.io/",
+  "homepage": "https://ray7-175908.firebaseapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "production": "react-scripts build && gulp purifycss && gulp purgecss",

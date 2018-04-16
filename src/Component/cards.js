@@ -23,8 +23,8 @@ export const TagList = (props) => {
 
 export const Card    = (props) => {
     return (
-            <div className={ props.single ? "card single" : "card" } role="Listitem"  alt={props.title} >
-            <div className="card-img" role="img" 
+            <div className={ props.single ? "card single" : "card" } >
+            <div className="card-img"  
             style={{backgroundImage: '' }}
             data-src={props.thumbnail }
             >

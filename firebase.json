@@ -3,10 +3,36 @@
         "public": "build" ,
         "headers": [
             {
-            "source": "/service-worker.js", 
-            "headers": [
-                {"key": "Cache-Control", "value": "no-cache"}
-            ]}
+                "source": "/",
+                "headers":[
+                    {"key": "Link", "value": "<https://cdn-images-1.medium.com>; rel=dns-prefetch"},
+                    {"key": "Link", "value": "<https://api.rss2json.com>; rel=dns-prefetch"}
+                ]  
+            },
+            {
+                "source": "**/*.@(js|css)",
+                "headers":[
+                    {"key": "Cache-Control","value": "max-age=108000000"}
+                ]  
+            },
+            {
+                "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+                "headers":[
+                    {"key": "Cache-Control","value": "max-age=108000000"}
+                ]  
+            },
+            {
+                "source": "**/*.@(jpg|jpeg|gif|png)",
+                "headers":[
+                    {"key": "Cache-Control","value": "max-age=108000000"}
+                ]  
+            },
+            {
+                "source": "/service-worker.js", 
+                "headers": [
+                    {"key": "Cache-Control", "value": "no-cache"}
+                ]
+            }
         ],
         "rewrites": [{
             "source": "**",
