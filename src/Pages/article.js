@@ -6,14 +6,6 @@ import Lazy from '../Component/Lazy'
 import {getContext} from '../Component/AppContext'
 
 class Articles extends Component {
-    componentWillMount(){
-        Loading.start() 
-    }
-
-    componentDidMount(){
-        Loading.done() 
-    }
-
     componentWillUpdate(){
         Loading.start() 
     }

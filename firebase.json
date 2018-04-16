@@ -3,13 +3,6 @@
         "public": "build" ,
         "headers": [
             {
-                "source": "/",
-                "headers":[
-                    {"key": "Link", "value": "<https://cdn-images-1.medium.com>; rel=dns-prefetch"},
-                    {"key": "Link", "value": "<https://api.rss2json.com>; rel=dns-prefetch"}
-                ]  
-            },
-            {
                 "source": "**/*.@(js|css)",
                 "headers":[
                     {"key": "Cache-Control","value": "max-age=108000000"}

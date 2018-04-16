@@ -10,7 +10,6 @@ import Footer   from './Component/footer'
 import Articles from './Pages/article' 
 /* Other */
 import toSlug  from './Component/Slugify'
-import Lazy from './Component/Lazy' 
 import { Provider } from './Component/AppContext'
 
 class App extends Component {
@@ -23,9 +22,7 @@ class App extends Component {
         }
     }
 
-
     async componentDidMount(){
-        //this.fetchCache()
         const res = await fetch(this.state.uri),
               data = await res.json()
 
@@ -37,14 +34,10 @@ class App extends Component {
            item.humandate = parseDate.toDateString()
            item.image = item.thumbnail
            item.thumbnail = item.thumbnail.replace(/\/max\/(.+)\//g, '/max/350/')
-           item.categories.map( e => {
-                if (! listCat.includes(e)) 
-                    listCat.push(e)
-                return e 
-           })
+           listCat.push(...item.categories) 
            return item
         })
-        data.categories = listCat 
+        data.categories = [...new Set(listCat)]
         await this.setStateAsync({
             feed: data,
             isLoad: true 
@@ -56,45 +49,6 @@ class App extends Component {
             this.setState(state, res)
         }) 
     }
-    
-    componentDidUpdate(){
-        Lazy() 
-    }
-
-    //fetchCache(){
-    //    let url      = this.state.uri
-    //    let cacheKey = url
-    //    let cached   = sessionStorage.getItem(cacheKey)
-
-    //    if ( cached === null ){
-    //        fetch(url).then((res) => {
-    //            if (res.status === 200) {
-    //                return res.json()
-    //            }
-    //        }).then( json => {
-    //            json.items.map( item => {
-    //                let parseDate = new Date(item.pubDate)
-    //                item.slug = toSlug(item.title) 
-    //                item.UTCpubDate = parseDate.toUTCString()
-    //                item.humandate = parseDate.toDateString()
-    //                return item
-    //            })
-    //            sessionStorage.setItem(cacheKey, JSON.stringify(json))
-    //            this.setState({
-    //                isLoad: true,
-    //                feed: json
-    //            })
-    //        })
-    //        //console.log(`Feed Load From ${cacheKey}`)
-    //        return
-    //    }
-
-    //    this.setState({
-    //        isLoad: true,
-    //        feed: JSON.parse(cached)  
-    //    })
-    //    //console.log(`Feed Load From SessionStorage`)
-    //}
 
     render(){
         return (

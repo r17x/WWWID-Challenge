@@ -8,10 +8,11 @@
         <meta name="keywords" content="Python, php, coding, code, geek, website, pwa, web developer, fullstack developer, programming, c, cpp, linux, unix">
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
         <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+        <link rel="dns-prefetch" href="//api.rss2json.com/">
         <title>WWWID React @ri7nz</title>
         <!-- <link rel="preload" href="<%= htmlWebpackPlugin.files.chunks['main'].entry %>" as="script"> -->
         <% for ( var css in htmlWebpackPlugin.files.css ) { %>
-            <link rel="preload" as="style" href="<%=htmlWebpackPlugin.files.css[css]%>" as="style">
+            <link rel="preload" as="style" href="<%=htmlWebpackPlugin.files.css[css]%>" as="style" onload='this.rel="stylesheet"'>
         <% } %>
         <% for ( var js in htmlWebpackPlugin.files.js ) { %>
             <link rel="preload" as="script" href="<%=htmlWebpackPlugin.files.js[js] %>" as="script">
