@@ -2,6 +2,10 @@ import React, { createElement } from 'react'
 import { Link } from 'react-router-dom'
 import Icon  from 'react-ionicons'; 
 
+// case https://cdn-images-1.medium.com/max/50/0*9QQWzkq42oT_kJ7S.
+// \/(max\/)(.+)\/
+// get 50
+
 export const toText   = (text, limit=0, except=' ...') => text 
        .split(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)
        .filter(v => v.length > 100)[0]
@@ -19,8 +23,8 @@ export const TagList = (props) => {
 
 export const Card    = (props) => {
     return (
-            <div className={ props.single ? "card single" : "card" } role="Listitem"  alt={props.title} >
-            <div className="card-img" role="img" 
+            <div className={ props.single ? "card single" : "card" } >
+            <div className="card-img"  
             style={{backgroundImage: '' }}
             data-src={props.thumbnail }
             >
