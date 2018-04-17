@@ -1,0 +1,292 @@
+@tailwind preflight;
+/*****************************
+ *    Here Your write a code  *
+ *    Here Your Import Like   *
+ *    @import 'component.css' *
+ *****************************/
+* {
+    font-family: Roboto, sans-serif; 
+}
+
+body { 
+    @apply bg-white; 
+}
+a {
+    @apply no-underline; 
+}
+
+.brand{
+    @apply flex flex-col items-center justify-center; 
+    &:hover, &:focus{
+        @apply text-black;  
+    }
+}
+
+body {
+    overflow: scroll;
+    @apply h-screen; 
+}
+
+.social {
+    @apply flex items-center justify-around list-reset;
+    li{
+        @apply text-white;  
+    }
+
+}
+
+header, .header { 
+    @apply w-full flex flex-col 
+           justify-center items-center 
+           shadow-md shadow leading-tight px-4
+           h-auto; 
+    background-color: #20232a;
+    h1,h2,h3,h4,p {
+        color: #61dafb;
+    }
+
+    h1 { 
+
+        @apply text-center font-semibold text-3xl tracking-tight; 
+
+    }
+
+    h2 { 
+        @apply font-light text-3xl text-center text-grey-lightest;
+
+    }
+
+    a {
+        @apply font-light text-grey-darker  cursor-pointer; 
+        &:hover, &:focus {
+            @apply font-semibold;  
+        }
+    }
+
+    .nav {
+        @apply w-full items-center inline-flex justify-between; 
+        @screen md{
+            @apply w-2/3;
+        }
+        @screen lg{
+            @apply w-2/3;
+        }
+        ul {
+            @apply flex flex-wrap list-reset my-4 justify-between;
+
+            @screen md{
+                @apply inline-flex justify-center; 
+            }
+            @screen lg{
+                @apply inline-flex justify-center; 
+            }
+            li {
+                @apply text-sm;  
+            }
+            @screen md{
+                li { @apply text-2xl mr-4;  }
+                li:after{
+                    content: '\2205'; 
+                    width: 100%;
+                    position: relative;
+                    right: -9%;
+                }
+                li:last-child{
+                    margin-right: 0; 
+                    &:after{
+                        content: '';  
+                    }
+                } 
+            }
+            @screen lg{
+                li { @apply text-2xl mr-4;  }
+                li:after{
+                    content: '\2205'; 
+                    width: 100%;
+                    position: relative;
+                    right: -9%;
+                }
+                li:last-child{
+                    margin-right: 0; 
+                    &:after{
+                        content: '';  
+                    }
+                } 
+            }
+
+        } 
+    }
+
+}
+.pages {
+    @apply flex justify-center  w-full; 
+    background-color: #FFF; 
+    min-height: 95%;
+    p {
+        @apply text-grey-darkest;  
+    }
+    .categories {
+        @apply flex flex-col list-reset w-full items-center justify-center py-2; 
+        @screen md{
+            @apply px-4; 
+        }
+        @screen lg{
+            @apply px-4; 
+        }
+        a {
+            @apply mb-4  shadow p-2 w-full;    
+            @screen md {
+                @apply w-3/4; 
+            }
+            @screen lg {
+                @apply w-2/3; 
+            }
+            li{
+                @apply tracking-wide text-lg; 
+                color: #20232a; 
+                text-transform: capitalize; 
+            }
+        }
+    }
+}
+
+.home{
+    @apply w-full p-6;
+    @screen lg {
+        @apply w-2/3 p-4;
+    }
+    @screen md {
+        @apply w-2/3 p-4; 
+    }
+}
+.cards {
+    @apply w-full flex flex-wrap justify-center; 
+    padding: .2rem; 
+
+    @screen md{
+        @apply justify-start w-2/3 p-4; 
+    }
+
+    @screen lg{
+        @apply justify-start w-2/3 p-4; 
+    }
+}
+.card-ig {
+    @apply p-2;
+    height: 13rem;
+    width: 13rem;
+}
+.card {
+
+    @apply mb-4
+    overflow-hidden shadow
+    flex flex-col justify-center
+    w-full border-solid border-2 border-grey-lighter
+    h-auto; 
+    max-height: 70%; 
+
+
+    @screen md {
+        @apply flex-row inline-flex;
+    }
+
+    @screen lg {
+        @apply flex-row inline-flex;
+    }
+
+    .card-img { 
+        @apply w-full 
+        bg-contain
+        bg-no-repeat
+        bg-center
+        bg-transparent;
+        min-height: 8rem;
+        opacity: 0;
+        transition: opacity .3s;
+    }
+    .card-body {
+
+        @apply w-full p-2;
+        @screen lg{
+            @apply px-6 py-4; 
+        }
+        @screen md{
+            @apply px-6 py-4; 
+        }
+
+        .card-title { @apply font-semibold text-xl mb-2; }
+
+        .card-caption { @apply text-grey-darker text-base font-light; }
+
+    }
+    
+    .card-footer{
+        @apply pt-2 flex flex-col;
+        ul {
+            @apply flex inline-flex justify-start;
+            padding: 0; 
+        }
+        .card-tags { 
+            @apply inline-block 
+                   bg-grey-lighter  
+                   px-3 py-1 text-xs
+                   font-semibold text-grey-darker 
+                   my-2 mx-1;
+        }    
+        .card-tags{
+            &:first-child{
+                margin-left: 0;  
+            }
+
+            &:before{
+                content: '#'; 
+            }
+        }
+
+        .meta{
+            @apply flex justify-between text-sm; 
+
+            label {
+                @apply inline-flex items-center cursor-pointer text-grey-darker tracking-tight; 
+                .author { 
+                @apply text-grey-darkest;  
+                }
+            }
+        }
+    }
+
+}
+
+.card.single{
+    max-height: 100%;
+    @apply flex flex-col;
+
+    figure {
+        @apply flex flex-col justify-center items-center; 
+    }
+    figcaption {
+        @apply pb-4 italic underline; 
+    }
+    .card-caption {
+        p {
+            @apply pb-2;
+        } 
+        h3 {
+            @apply pb-4 ;
+        }
+    }
+}
+
+#r00t {
+    @apply h-full;
+}
+footer {
+    @apply w-full flex items-center justify-center bg-black flex-col;  
+
+    .footer-content {
+        @apply w-2/3;  
+    }
+    
+}
+@tailwind utilities;
+@tailwind screens;

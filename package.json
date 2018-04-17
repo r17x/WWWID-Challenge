@@ -1,0 +1,39 @@
+{
+    "name": "wwwid",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "autoprefixer": "^8.0.0",
+        "gulp": "^3.9.1",
+        "gulp-postcss": "^7.0.1",
+        "gulp-purgecss": "^0.20.0",
+        "gulp-purifycss": "^0.2.0",
+        "gulp-sass": "^3.1.0",
+        "npm": "^5.6.0",
+        "nprogress": "^0.2.0",
+        "postcss-import": "^11.1.0",
+        "precss": "^3.1.0",
+        "prop-types": "^15.6.1",
+        "react": "^16.3.0",
+        "react-dom": "^16.3.0",
+        "react-ionicons": "^2.1.6",
+        "react-router-dom": "^4.2.2",
+        "react-scripts": "1.1.1",
+        "tailwindcss": "^0.4.1"
+    },
+    "homepage": "https://ray7-175908.firebaseapp.com/",
+    "scripts": {
+        "start": "react-scripts start",
+        "production": "react-scripts build && npm run generate-sw && gulp purifycss && gulp purgecss",
+        "deploy": "firebase deploy",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "generate-sw": "sw-precache --root=build --config ./sw-precache-config.js && uglifyjs build/service-worker.js -o build/service-worker.js"
+    },
+    "devDependencies": {
+        "gh-pages": "^1.1.0",
+        "glob-all": "^3.1.0",
+        "lighthouse": "^2.9.4"
+    }
+}
